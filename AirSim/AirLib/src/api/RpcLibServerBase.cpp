@@ -89,7 +89,7 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
     pimpl_->server.bind("getMinRequiredClientVersion", []() -> int {
         return 1;
     });
-       
+
     pimpl_->server.bind("simPause", [&](bool is_paused) -> void { 
         getWorldSimApi()->pause(is_paused); 
     });
@@ -173,12 +173,18 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
 
         //Reset
         resetInProgress = true;
-        auto* sim_world_api = getWorldSimApi();
+        getWorldSimApi()->reset();
+        getVehicleApi("")->reset();
+        getWorldSimApi()->resetRefereeDooCounter();
+        getWorldSimApi()->resetCones();
+        resetInProgress = false;
+
+        /*auto* sim_world_api = getWorldSimApi();
         if (sim_world_api)
             sim_world_api->reset();
         else
             getVehicleApi("")->reset();
-            resetInProgress = false;
+            resetInProgress = false;*/
     });
 
     pimpl_->server.bind("simPrintLogMessage", [&](const std::string& message, const std::string& message_param, unsigned char severity) -> void {

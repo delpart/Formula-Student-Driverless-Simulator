@@ -94,6 +94,27 @@ msr::airlib::CarApiBase::RefereeState WorldSimApi::getRefereeState() const
     return result;
 }
 
+void WorldSimApi::resetRefereeDooCounter()
+{
+    UAirBlueprintLib::RunCommandOnGameThread([this]() {
+        AReferee* referee = (AReferee*)UGameplayStatics::GetActorOfClass(simmode_, simmode_->refereeBP_class_);
+        referee->ResetDooCounter();
+        }, true);
+}
+
+void WorldSimApi::resetCones()
+
+{
+    UAirBlueprintLib::RunCommandOnGameThread([this]() {
+        TArray<AActor*> results;
+        
+        UGameplayStatics::GetAllActorsWithTag(simmode_, "spline_cones_best", results);
+
+        if (results.Num() > 0)
+            results[0]->Reset();
+        }, true);
+}
+
 bool WorldSimApi::setObjectPose(const std::string& object_name, const WorldSimApi::Pose& pose, bool teleport)
 {
     bool result;

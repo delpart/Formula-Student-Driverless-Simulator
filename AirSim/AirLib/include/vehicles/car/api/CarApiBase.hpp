@@ -108,6 +108,7 @@ public:
     };
 
     struct RefereeState {
+    public:
         int doo_counter = 0;
 	    std::vector<float> laps;
         std::vector<Cone> cones;
@@ -122,7 +123,9 @@ public:
         {
         }
 
-
+        void setDooCounter(int doo_counter_val) {
+            doo_counter = doo_counter_val;
+        }
     };
 
 public:

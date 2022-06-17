@@ -17,6 +17,7 @@ public:
 	AReferee();
 
 	msr::airlib::CarApiBase::RefereeState getState();
+	void ResetDooCounter();
 
 protected:
 	// Called when the game starts or when spawned

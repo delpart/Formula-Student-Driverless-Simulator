@@ -29,6 +29,11 @@ void AReferee::Tick(float DeltaTime)
 
 }
 
+void AReferee::ResetDooCounter()
+{
+	state.doo_counter = 0;
+}
+
 int32 AReferee::ConeHit(FString coneName)
 {
 	return (int32) (++state.doo_counter);
