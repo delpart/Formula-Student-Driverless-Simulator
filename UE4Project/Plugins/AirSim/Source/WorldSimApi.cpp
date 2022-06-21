@@ -94,11 +94,12 @@ msr::airlib::CarApiBase::RefereeState WorldSimApi::getRefereeState() const
     return result;
 }
 
-void WorldSimApi::resetRefereeDooCounter()
+void WorldSimApi::resetReferee()
 {
     UAirBlueprintLib::RunCommandOnGameThread([this]() {
         AReferee* referee = (AReferee*)UGameplayStatics::GetActorOfClass(simmode_, simmode_->refereeBP_class_);
         referee->ResetDooCounter();
+        referee->ResetLaps();
         }, true);
 }
 

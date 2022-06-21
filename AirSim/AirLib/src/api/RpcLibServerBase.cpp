@@ -175,7 +175,7 @@ RpcLibServerBase::RpcLibServerBase(ApiProvider* api_provider, const std::string&
         resetInProgress = true;
         getWorldSimApi()->reset();
         getVehicleApi("")->reset();
-        getWorldSimApi()->resetRefereeDooCounter();
+        getWorldSimApi()->resetReferee();
         getWorldSimApi()->resetCones();
         resetInProgress = false;
 

@@ -29,6 +29,11 @@ void AReferee::Tick(float DeltaTime)
 
 }
 
+void AReferee::ResetLaps()
+{
+    state.laps.clear();
+}
+
 void AReferee::ResetDooCounter()
 {
 	state.doo_counter = 0;
