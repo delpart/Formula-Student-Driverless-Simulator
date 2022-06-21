@@ -100,7 +100,15 @@ void WorldSimApi::resetReferee()
         AReferee* referee = (AReferee*)UGameplayStatics::GetActorOfClass(simmode_, simmode_->refereeBP_class_);
         referee->ResetDooCounter();
         referee->ResetLaps();
+
+        TArray<AActor*> results;
+        UGameplayStatics::GetAllActorsWithTag(simmode_, "start_finish_line", results);
+        
+        if (results.Num() > 0)
+            results[0]->Reset();
+
         }, true);
+
 }
 
 void WorldSimApi::resetCones()
