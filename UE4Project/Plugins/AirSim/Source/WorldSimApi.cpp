@@ -98,9 +98,10 @@ void WorldSimApi::resetReferee()
 {
     UAirBlueprintLib::RunCommandOnGameThread([this]() {
         AReferee* referee = (AReferee*)UGameplayStatics::GetActorOfClass(simmode_, simmode_->refereeBP_class_);
-        referee->ResetDooCounter();
-        referee->ResetLaps();
-
+        if (referee != NULL) {
+            referee->ResetDooCounter();
+            referee->ResetLaps();
+        }
         TArray<AActor*> results;
         UGameplayStatics::GetAllActorsWithTag(simmode_, "start_finish_line", results);
         
